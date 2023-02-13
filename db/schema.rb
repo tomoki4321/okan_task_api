@@ -10,10 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_10_124334) do
+ActiveRecord::Schema.define(version: 2023_02_13_131428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "memos", force: :cascade do |t|
+    t.string "name"
+    t.bigint "task_id", null: false
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_id"], name: "index_memos_on_task_id"
+  end
+
+  create_table "task_categories", force: :cascade do |t|
+    t.bigint "task_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_task_categories_on_category_id"
+    t.index ["task_id"], name: "index_task_categories_on_task_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.string "content"
+    t.date "limit"
+    t.integer "priority"
+    t.integer "status"
+    t.integer "progress"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -45,4 +82,8 @@ ActiveRecord::Schema.define(version: 2023_02_10_124334) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "memos", "tasks"
+  add_foreign_key "task_categories", "categories"
+  add_foreign_key "task_categories", "tasks"
+  add_foreign_key "tasks", "users"
 end
