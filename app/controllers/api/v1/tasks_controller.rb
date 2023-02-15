@@ -24,7 +24,7 @@ class Api::V1::TasksController < ApplicationController
 
   def update
     set_task
-    if @task.update!(task_params)
+    if @task.update!(name:params[:task][:name],content:params[:task][:content],limit:params[:task][:limit],priority:params[:task][:priority],status:params[:task][:status],progress:params[:task][:progress])
       head :created
     end
   end
@@ -42,6 +42,6 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:user_id, :name, :content, :priority, :status, :progress,:limit).merge(user_id: current_api_v1_user.id)
+    params.require(:task).permit(:user_id,:name, :content, :priority, :status, :progress,:limit).merge(user_id: current_api_v1_user.id)
   end
 end
