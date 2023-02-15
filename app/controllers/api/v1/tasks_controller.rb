@@ -42,6 +42,6 @@ class Api::V1::TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:user_id, :name, :content, :priority, :status, :progress).merge(user_id: current_api_v1_user.id)
+    params.require(:task).permit(:user_id, :name, :content, :priority, :status, :progress,:limit).merge(user_id: current_api_v1_user.id)
   end
 end
