@@ -4,6 +4,7 @@ json.array! @tasks do |task|
     :user_id,
     :name,
     :content,
+    :limit ,
     :priority,
     :status,
     :progress,
@@ -13,7 +14,8 @@ json.array! @tasks do |task|
     json.user do
       json.extract! task.user,
       :id,
-      :name,
+      :name
     end
+
 
 end
