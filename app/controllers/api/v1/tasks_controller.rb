@@ -1,6 +1,6 @@
 class Api::V1::TasksController < ApplicationController
   def index
-    @tasks = Task.where(user_id: current_api_v1_user.id).includes(:user)
+    @tasks = Task.where(user_id: current_api_v1_user.id).includes(:user).recent_order
   end
 
   def new
@@ -44,4 +44,5 @@ class Api::V1::TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:user_id,:name, :content, :priority, :status, :progress,:limit).merge(user_id: current_api_v1_user.id)
   end
+
 end
