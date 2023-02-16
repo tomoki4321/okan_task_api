@@ -14,8 +14,8 @@ json.array! @tasks do |task|
     json.user do
       json.extract! task.user,
       :id,
-      :name
+      :name,
+      :admin
     end
-
 
 end
