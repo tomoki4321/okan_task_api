@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       scope format: 'json' do
         resources :tasks
       end
-      devise_scope :v1_user do
+      devise_scope :api_v1_user do
         post "auth/guest_sign_in", to: "auth/sessions#guest_sign_in"
         post "auth/admin_sign_in", to: "auth/sessions#admin_sign_in"
         scope format: 'json' do
