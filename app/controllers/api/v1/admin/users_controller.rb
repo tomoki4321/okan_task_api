@@ -1,6 +1,6 @@
 class Api::V1::Admin::UsersController < ApplicationController
   def index
-    @users = User.all
+    @users = User.all.update_order
   end
 
   def new
@@ -26,7 +26,7 @@ class Api::V1::Admin::UsersController < ApplicationController
 
   def update
     set_user
-    if @user.update(user_params)
+    if @user.update!(name:params[:user][:name],email:params[:user][:email],password:params[:user][:password])
       head :ok
     else
       head :bad_request

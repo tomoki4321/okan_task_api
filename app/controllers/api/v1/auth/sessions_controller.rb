@@ -13,5 +13,4 @@ class Api::V1::Auth::SessionsController < DeviseTokenAuth::SessionsController
     @resource.save!
     render_create_success
   end
-
 end

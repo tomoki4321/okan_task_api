@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable, :trackable
   include DeviseTokenAuth::Concerns::User
   has_many :tasks, dependent: :destroy
+  scope :update_order, -> {order(updated_at: :desc)}
 
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |user|

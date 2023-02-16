@@ -3,5 +3,5 @@ json.array! @users do |user|
     :id,
     :name,
     :email,
-    :admin,
+    :admin
 end
