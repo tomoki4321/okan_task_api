@@ -11,11 +11,11 @@ json.array! @tasks do |task|
     :created_at,
     :updated_at
 
-    json.user do
-      json.extract! task.user,
-      :id,
-      :name,
-      :admin
-    end
+    # json.user do
+    #   json.extract! task.user,
+    #   :id,
+    #   :name,
+    #   :admin
+    # end
 
 end
