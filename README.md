@@ -16,6 +16,7 @@
 $ git clone git@github.com:tomoki4321/okan_task.git
 $ cd okan_task
 $ bundle install
+$ yarn install
 $ rails db:create && rails db:migrate
 $ rails s
 ```

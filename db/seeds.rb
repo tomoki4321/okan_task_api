@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+#user
+user1=User.create(name:"tomoki1",email:"tomoki1@gmail.com",password:"tomoki1")
+user2=User.create(name:"tomoki2",email:"tomoki2@gmail.com",password:"tomoki2")
+user3=User.create(name:"tomoki3",email:"tomoki3@gmail.com",password:"tomoki3")
+user4=User.create(name:"tomoki4",email:"tomoki4@gmail.com",password:"tomoki4")
+user5=User.create(name:"tomoki5",email:"tomoki5@gmail.com",password:"tomoki5")
+#task
+task1=Task.create(name:"テスト１",content:"テストです１",limit:Date.today,priority:2,status:2,progress:20,user_id:user1.id)
+task2=Task.create(name:"テスト２",content:"テストです２",limit:Date.today,priority:2,status:2,progress:20,user_id:user2.id)
+task3=Task.create(name:"テスト３",content:"テストです３",limit:Date.today,priority:2,status:2,progress:20,user_id:user3.id)
+task4=Task.create(name:"テスト４",content:"テストです４",limit:Date.today,priority:2,status:2,progress:20,user_id:user4.id)
+task5=Task.create(name:"テスト５",content:"テストです５",limit:Date.today,priority:2,status:2,progress:20,user_id:user5.id)
+#category
+category1=Category.create(name:"仕事")
+category2=Category.create(name:"趣味")
+category3=Category.create(name:"買い物")
+category4=Category.create(name:"アイデア")
+category5=Category.create(name:"その他")
+#task_category
+TaskCategory.create(task_id:task1.id,category_id:category1.id)
+TaskCategory.create(task_id:task2.id,category_id:category2.id)
+TaskCategory.create(task_id:task3.id,category_id:category3.id)
+TaskCategory.create(task_id:task4.id,category_id:category4.id)
+TaskCategory.create(task_id:task5.id,category_id:category5.id)
+
