@@ -5,12 +5,19 @@ class Api::V1::TasksController < ApplicationController
 
   def new
     @task=Task.new
+    @category_id =@task.task_categories.build
   end
 
   def create
     @task = Task.new(task_params)
     if @task.save!
       head :created
+      notifier = Slack::Notifier.new(
+        ENV['SLACK_WEBHOOK_URL'],
+        channel: "##{ENV['SLACK_CHANNEL']}",
+        username: 'タスク通知'
+      )
+      notifier.ping "タスク名：#{params[:task][:name]},タスク内容：#{params[:task][:content]},期限:#{params[:task][:limit]},進捗:#{params[:task][:progress]}%"
     end
   end
 
@@ -35,6 +42,19 @@ class Api::V1::TasksController < ApplicationController
     head :ok
   end
 
+  def label_add
+    @task_category=TaskCategory.new(label_params)
+    if@task_category.save!
+      head :created
+    else
+      head :bad_request
+    end
+  end
+
+  def label_find
+    @category=TaskCategory.find_by(task_id: params[:id])
+  end
+
   private
 
   def set_task
@@ -45,4 +65,7 @@ class Api::V1::TasksController < ApplicationController
     params.require(:task).permit(:user_id,:name, :content, :priority, :status, :progress,:limit).merge(user_id: current_api_v1_user.id)
   end
 
+  def label_params
+    params.require(:task_category).permit(:task_id,:category_id)
+  end
 end

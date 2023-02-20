@@ -11,6 +11,9 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'devise-i18n'
 gem 'bootsnap', '>= 1.4.4', require: false
+gem 'dotenv-rails'
+gem 'slack-notifier'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
