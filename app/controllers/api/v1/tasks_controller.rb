@@ -12,12 +12,6 @@ class Api::V1::TasksController < ApplicationController
     @task = Task.new(task_params)
     if @task.save!
       head :created
-      notifier = Slack::Notifier.new(
-        ENV['SLACK_WEBHOOK_URL'],
-        channel: "##{ENV['SLACK_CHANNEL']}",
-        username: 'タスク通知'
-      )
-      notifier.ping "タスク名：#{params[:task][:name]},タスク内容：#{params[:task][:content]},期限:#{params[:task][:limit]},進捗:#{params[:task][:progress]}%"
     end
   end
 
