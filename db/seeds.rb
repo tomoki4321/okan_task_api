@@ -11,11 +11,11 @@ task3=Task.create(name:"テスト３",content:"テストです３",limit:Date.to
 task4=Task.create(name:"テスト４",content:"テストです４",limit:Date.today,priority:2,status:2,progress:20,user_id:user4.id)
 task5=Task.create(name:"テスト５",content:"テストです５",limit:Date.today,priority:2,status:2,progress:20,user_id:user5.id)
 #category
-category1=Category.create(name:"仕事")
-category2=Category.create(name:"趣味")
-category3=Category.create(name:"買い物")
-category4=Category.create(name:"アイデア")
-category5=Category.create(name:"その他")
+category1=Category.create(id:1,name:"仕事")
+category2=Category.create(id:2,name:"趣味")
+category3=Category.create(id:3,name:"買い物")
+category4=Category.create(id:4,name:"アイデア")
+category5=Category.create(id:5,name:"その他")
 #task_category
 TaskCategory.create(task_id:task1.id,category_id:category1.id)
 TaskCategory.create(task_id:task2.id,category_id:category2.id)
