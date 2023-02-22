@@ -14,6 +14,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dotenv-rails'
 gem 'slack-notifier'
 gem 'unicorn'
+gem 'rspec-rails'
+gem 'factory_bot_rails'
 
 
 group :development, :test do
