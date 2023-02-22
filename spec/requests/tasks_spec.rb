@@ -5,6 +5,14 @@ RSpec.describe "Tasks", type: :request do
   let!(:task1){ FactoryBot.create(:task1,user: user)}
   let!(:category){ FactoryBot.create(:category)}
   let!(:task_category){ FactoryBot.create(:task_category,task: task1,category: category)}
+
+  describe "一覧機能" do
+    it "タスクを一覧できる" do
+      auth_tokens = sign_in(user)
+      get api_v1_tasks_path, headers: auth_tokens
+      expect(response.status).to eq 200
+    end
+  end
   describe "新規投稿" do
     it "タスクを投稿できる" do
       auth_tokens = sign_in(user)
