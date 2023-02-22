@@ -1,6 +1,7 @@
 class Api::V1::Admin::UsersController < ApplicationController
+  before_action :only_admin
   def index
-    @users = User.all.update_order
+    @users = User.all
   end
 
   def new
@@ -52,5 +53,11 @@ class Api::V1::Admin::UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_digest, :admin)
+  end
+
+  def only_admin
+    if current_api_v1_user.admin == false
+      head :unauthorized
+    end
   end
 end
