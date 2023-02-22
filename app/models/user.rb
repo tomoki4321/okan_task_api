@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   has_many :tasks, dependent: :destroy
   scope :update_order, -> {order(updated_at: :desc)}
+  validates :email, presence: true
+  validates :password, presence: true
 
   def self.guest
     find_or_create_by!(email: "guest@example.com") do |user|
