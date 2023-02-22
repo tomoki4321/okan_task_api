@@ -1,7 +1,7 @@
 class Api::V1::Admin::UsersController < ApplicationController
   before_action :only_admin
   def index
-    @users = User.all.update_order
+    @users = User.all
   end
 
   def new
