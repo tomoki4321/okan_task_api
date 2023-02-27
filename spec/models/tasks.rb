@@ -29,6 +29,20 @@ RSpec.describe 'Task', type: :model do
         expect(task).not_to be_valid
       end
     end
+    context 'タスクの名前が５５文字以上の場合' do
+      it 'タスク登録に失敗する' do
+        user = User.create(email: 'test@gmail.com', password: 'password', password_confirmation: 'password')
+        task = Task.create(name:"テスト"*20,content:"テスト内容",limit:Date.today,user_id:user.id)
+        expect(task).not_to be_valid
+      end
+    end
+    context 'タスクの名前が２５５文字以上の場合' do
+      it 'タスク登録に失敗する' do
+        user = User.create(email: 'test@gmail.com', password: 'password', password_confirmation: 'password')
+        task = Task.create(name:"テスト",content:"テスト内容"*60,limit:Date.today,user_id:user.id)
+        expect(task).not_to be_valid
+      end
+    end
   end
   describe "scopeテスト" do
     let!(:user){ FactoryBot.create(:user)}
