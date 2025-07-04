@@ -23,7 +23,10 @@ module OkanTaskApi
   class Application < Rails::Application
     config.load_defaults 6.1
     config.i18n.default_locale = :ja
-    config.api_only = true
+    #以下の３行を追加＆変更
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.api_only = false
 
     config.generators do |g|
       g.test_framework :rspec,
