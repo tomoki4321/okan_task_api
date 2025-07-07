@@ -24,6 +24,14 @@ module OkanTaskApi
     config.load_defaults 6.1
     config.i18n.default_locale = :ja
 
+    #以下の４行を追加
+    #セッションを無効化
+    config.session_store :disabled
+    #API専用設定に戻す
+    config.api_only = true
+    config.middleware.delete ActionDispatch::Cookies
+    config.middleware.delete ActionDispatch::Session::CookieStore
+
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
