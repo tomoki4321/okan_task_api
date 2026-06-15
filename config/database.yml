@@ -85,5 +85,3 @@ test:
 production:
   <<: *default
   database: okan_task_api_production
-  username: okan_task_api
-  password: <%= ENV['OKAN_TASK_API_DATABASE_PASSWORD'] %>
