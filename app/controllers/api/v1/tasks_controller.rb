@@ -1,4 +1,5 @@
 class Api::V1::TasksController < ApplicationController
+  before_action :authenticate_api_v1_user!
   def index
     @tasks = Task.where(user_id: current_api_v1_user.id).includes(:user).recent_order
   end

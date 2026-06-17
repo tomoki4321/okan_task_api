@@ -13,6 +13,13 @@ RSpec.describe "Tasks", type: :request do
       expect(response.status).to eq 200
     end
   end
+  # 異常系テスト追加
+  describe "認証していない場合" do
+    it "タスク一覧にアクセスすると401が返る" do
+      get api_v1_tasks_path   # headers を付けない = 未ログイン
+      expect(response.status).to eq 401
+    end
+  end
   describe "新規投稿" do
     it "タスクを投稿できる" do
       auth_tokens = sign_in(user)
