@@ -57,4 +57,7 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # テスト環境ではホスト認可を無効化する
+  # config.hosts.clear
 end
