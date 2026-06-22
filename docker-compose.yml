@@ -22,6 +22,8 @@ services:
       DATABASE_HOST: db
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
+      LINE_CHANNEL_TOKEN: ${LINE_CHANNEL_TOKEN}
+      LINE_USER_ID: ${LINE_USER_ID}
 
 volumes:
   postgres_data:
